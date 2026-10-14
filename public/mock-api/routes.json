@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "id": "BX-101",
+      "origin": "Langihan Terminal",
+      "destination": "Bancasi Airport",
+      "vehicle": "Airport Van",
+      "departure": "06:30",
+      "arrival": "07:05",
+      "fare": 80,
+      "seats": 10,
+      "status": "On time",
+      "operator": "Butuan Airport Shuttle"
+    },
+    {
+      "id": "BX-204",
+      "origin": "Robinsons Butuan",
+      "destination": "Caraga State University",
+      "vehicle": "Modern Jeepney",
+      "departure": "07:15",
+      "arrival": "07:55",
+      "fare": 25,
+      "seats": 18,
+      "status": "Boarding",
+      "operator": "Butuan City Loop"
+    },
+    {
+      "id": "BX-318",
+      "origin": "Butuan Integrated Bus Terminal",
+      "destination": "Nasipit Port",
+      "vehicle": "Air-conditioned Bus",
+      "departure": "08:30",
+      "arrival": "09:25",
+      "fare": 95,
+      "seats": 24,
+      "status": "Few seats",
+      "operator": "Agusan Coastal Transit"
+    },
+    {
+      "id": "BX-412",
+      "origin": "Libertad Public Market",
+      "destination": "Masao Port",
+      "vehicle": "Multicab",
+      "departure": "09:10",
+      "arrival": "09:45",
+      "fare": 35,
+      "seats": 12,
+      "status": "On time",
+      "operator": "Masao Libertad Line"
+    }
+  ]
+}
