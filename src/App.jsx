@@ -1,10 +1,11 @@
-import { NavLink, Route, Routes } from "react-router-dom";
-import { BusFront, CalendarCheck, LayoutDashboard, Menu, Route as RouteIcon, ShieldCheck, TicketCheck, X } from "lucide-react";
+import { NavLink, Navigate, Route, Routes } from "react-router-dom";
+import { BusFront, CalendarCheck, LayoutDashboard, LogOut, Menu, Route as RouteIcon, ShieldCheck, TicketCheck, UserRound, X } from "lucide-react";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard.jsx";
 import RoutesPage from "./pages/RoutesPage.jsx";
 import BookingPage from "./pages/BookingPage.jsx";
 import TicketsPage from "./pages/TicketsPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 
 const navItems = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -15,6 +16,23 @@ const navItems = [
 
 function App() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState(() => sessionStorage.getItem("biyahego-user"));
+
+  const login = (name) => {
+    const formattedName = name.replace(/\b\w/g, (letter) => letter.toUpperCase());
+    sessionStorage.setItem("biyahego-user", formattedName);
+    setUser(formattedName);
+  };
+
+  const logout = () => {
+    sessionStorage.removeItem("biyahego-user");
+    setUser("");
+    setOpen(false);
+  };
+
+  if (!user) {
+    return <Routes><Route path="/login" element={<LoginPage onLogin={login} />} /><Route path="*" element={<Navigate to="/login" replace />} /></Routes>;
+  }
 
   return (
     <div className="app-shell">
@@ -38,6 +56,7 @@ function App() {
           <ShieldCheck size={18} aria-hidden="true" />
           <span>Accessible booking flow with mock API route data.</span>
         </div>
+        <button className="sidebar-logout" type="button" onClick={logout}><LogOut size={18} aria-hidden="true" /> Sign out</button>
       </aside>
 
       <div className="main-column">
@@ -49,9 +68,9 @@ function App() {
             <p className="eyebrow">Transportation Sector</p>
             <h1>Smart route booking for Butuan City commuters</h1>
           </div>
-          <div className="topbar-status" aria-label="System status">
-            <span className="pulse" aria-hidden="true" />
-            Mock API Online
+          <div className="user-status" aria-label={`Signed in as ${user}`}>
+            <span className="user-avatar" aria-hidden="true"><UserRound size={17} /></span>
+            <span><strong>{user}</strong><small>Passenger account</small></span>
           </div>
         </header>
 
